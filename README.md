@@ -1,4 +1,4 @@
-# 🔢 Microservice Calculator App – SIT737 Task 5.1P
+# 🔢 Containerization Microservice Calculator App – SIT737 Task 5.1P
 
 > A containerized Node.js calculator application built with microservices, React frontend, and Docker Compose 🐳
 
