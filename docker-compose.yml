@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  calculator-service:
+    build: ./calculator-service
+    ports:
+      - "3001:3001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/api/calc/add"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  log-service:
+    build: ./log-service
+    ports:
+      - "3002:3002"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3002/api/logs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  gateway-service:
+    build: ./gateway-service
+    ports:
+      - "3000:3000"
+    depends_on:
+      - calculator-service
+      - log-service
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/logs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - gateway-service

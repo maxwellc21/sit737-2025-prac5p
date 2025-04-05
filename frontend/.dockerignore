@@ -1,0 +1,14 @@
+# Ignore node modules (we rebuild in Docker)
+node_modules
+
+# Ignore logs and unnecessary files
+logs
+*.log
+*.env
+.dockerignore
+.git
+.gitignore
+
+# Ignore local-only config
+.vscode
+.idea
